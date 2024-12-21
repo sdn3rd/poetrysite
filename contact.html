@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the poetry of lost connections and the impact of ghosting. Spectral Tapestry captures the nuanced pain and silent conversations that arise from relationships left unresolved.">
+    <meta name="keywords" content="poetry, ghosting, relationships, emotions, unspoken words, lost connections, spectral tapestry, performance art">
+    <meta name="author" content="Tristan Nuvola">
+    <meta property="og:title" content="Spectral Tapestry - Performance Poetry of Ghosted Connections">
+    <meta property="og:description" content="A performance poetry site exploring the quiet ache of ghosting and the journey of letting go.">
+    <meta property="og:image" content="https://spectraltapestry.com/preview.jpg">
+    <meta property="og:url" content="https://spectraltapestry.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Spectral Tapestry - Performance Poetry of Ghosted Connection">
+    <meta name="twitter:description" content="Explore the nuances of lost connections through poetry. Spectral Tapestry unveils the silent ache of ghosting and unspoken farewells.">
+    <meta name="twitter:image" content="https://spectraltapestry.com/preview.jpg">
+    <title>Contact - Spectral Tapestry</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120-precomposed.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Include Cloudflare Turnstile Widget -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        /* Ensure Turnstile widget is visible */
+        .cf-turnstile {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main content container -->
+    <div id="content">
+        <!-- Header with back and patreon buttons, language toggle -->
+        <header>
+            <div class="header-content">
+                <!-- Top Row -->
+                <div class="top-row">
+                    <div id="header-left">
+                        <nav class="header-nav">
+                            <a href="index.html" id="back-link">Back</a>
+                            <a href="https://www.patreon.com/tristannuvola" target="_blank" id="patreon-link">Patreon</a>
+                        </nav>
+                    </div>
+                    <div class="language-toggle">
+                        <button id="lang-toggle" class="lang-btn">Ita</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contact Form -->
+        <div id="contact-form-container">
+            <h1 id="page-title">Leave feedback or request for takedown</h1>
+            <form id="contact-form" method="POST" action="https://contact-form-worker.notaa.workers.dev">
+                <label for="email" id="email-label">Your Email (optional):</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com">
+
+                <label for="message" id="message-label">Your Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <!-- Cloudflare Turnstile Widget -->
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAyqLP0723YQLCis"></div>
+
+                <button type="submit" id="submit-button">Send</button>
+            </form>
+        </div>
+
+        <!-- Footer with theme toggle -->
+        <footer>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+        </footer>
+    </div>
+
+    <!-- Audio element -->
+    <audio id="background-audio" loop muted></audio>
+
+    <!-- Link to external JavaScript file -->
+    <script src="contact.js"></script>
+
+    <!-- Add the following script to handle cookies and redirection -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to get query parameters
+            function getQueryParams() {
+                const params = {};
+                window.location.search.substring(1).split("&").forEach(function(part) {
+                    const [key, value] = part.split("=");
+                    if (key) params[decodeURIComponent(key)] = decodeURIComponent(value);
+                });
+                return params;
+            }
+
+            // Function to set a cookie
+            function setCookie(name, value, hours) {
+                const d = new Date();
+                d.setTime(d.getTime() + (hours*60*60*1000));
+                const expires = "expires="+ d.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            }
+
+            // Function to get a cookie
+            function getCookie(name) {
+                const cname = name + "=";
+                const decodedCookie = decodeURIComponent(document.cookie);
+                const ca = decodedCookie.split(';');
+                for(let i = 0; i < ca.length; i++) {
+                    let c = ca[i].trim();
+                    if (c.indexOf(cname) === 0) {
+                        return c.substring(cname.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            // Function to hide or disable the contact form and button
+            function disableContactFormAndButton() {
+                // Hide the contact form
+                const contactForm = document.getElementById('contact-form');
+                if (contactForm) {
+                    contactForm.style.display = 'none'; // Hide the form
+
+                    // Optionally, show a message
+                    const message = document.createElement('p');
+                    message.textContent = "You have already contacted us. Please try again in 24 hours.";
+                    message.style.color = 'gray';
+                    message.style.marginTop = '20px';
+                    contactForm.parentNode.appendChild(message);
+                }
+
+                // Hide the contact button in the header
+                const contactBtn = document.getElementById('contact-link');
+                if (contactBtn) {
+                    contactBtn.style.display = 'none'; // Hide the button
+
+                    // Optionally, show a message near the button location
+                    const message = document.createElement('p');
+                    message.textContent = "You have already contacted us. Please try again in 24 hours.";
+                    message.style.color = 'gray';
+                    message.style.marginTop = '10px';
+                    contactBtn.parentNode.appendChild(message);
+                }
+            }
+
+            const params = getQueryParams();
+
+            if (params.submitted && params.submitted === "true") {
+                // Set a cookie to prevent further submissions for 24 hours
+                setCookie('formSubmitted', 'true', 24);
+
+                // Optionally, remove the query parameter from the URL
+                if (window.history.replaceState) {
+                    const url = new URL(window.location);
+                    url.searchParams.delete('submitted');
+                    window.history.replaceState({}, document.title, url.pathname);
+                }
+
+                // Disable the contact form and button
+                disableContactFormAndButton();
+            }
+
+            // Check if the user has submitted the form in the last 24 hours
+            const formSubmitted = getCookie('formSubmitted');
+            if (formSubmitted === "true") {
+                disableContactFormAndButton();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,952 @@
+/* Root Variables */
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --line-color: #000000;
+    --highlight-color: #f0f0f0;
+    --link-color: #000000;
+    --toggle-bg-checked: #4CAF50;
+    --hover-color: #e0e0e0; /* Added hover color for puzzle tiles */
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --line-color: #ffffff;
+    --highlight-color: #333333;
+    --link-color: #ffffff;
+    --toggle-bg-checked: #4CAF50;
+    --hover-color: #444444; /* Hover color for dark theme */
+}
+
+/* Fonts */
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/roboto-v32-latin-regular.woff2') format('woff2'),
+         url('/fonts/roboto-v32-latin-regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/roboto-v32-latin-500.woff2') format('woff2'),
+         url('/fonts/roboto-v32-latin-500.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Menu Icon Container */
+#menu-icon-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100; /* Ensure above header */
+}
+
+#menu-icon-container div {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#menu-icon-container img {
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    #menu-icon-container img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Patreon Icon Container */
+#patreon-icon-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1100; /* Ensure above header */
+}
+
+#patreon-icon-container img {
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    #patreon-icon-container img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Side Menu */
+#side-menu {
+    position: fixed;
+    top: 0;
+    left: -240px;
+    width: 240px;
+    height: 100%;
+    background-color: var(--background-color);
+    border-right: 1px solid var(--line-color);
+    z-index: 1003;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s ease;
+}
+
+#side-menu.visible {
+    left: 0;
+}
+
+#side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#side-menu li {
+    margin: 20px;
+}
+
+/* Side Menu Links */
+#side-menu a,
+#side-menu button {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#side-menu a:hover,
+#side-menu button:hover {
+    background-color: var(--highlight-color);
+}
+
+#side-menu img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.menu-item-text {
+    color: var(--text-color);
+    font-size: 1em;
+    margin-left: 10px;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    #side-menu img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .menu-item-text {
+        font-size: 0.9em;
+    }
+}
+
+/* Tristan Button Styles */
+#tristan-button-container {
+    margin-top: auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#tristan-logo-link {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+#tristan-logo-link:hover {
+    background-color: var(--highlight-color);
+}
+
+#tristan-logo-link img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+#tristan-logo-link:hover img {
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    #tristan-logo-link img {
+        max-width: 160px;
+    }
+}
+
+/* Floating Header */
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--line-color);
+    padding: 10px 0;
+    z-index: 1001;
+    text-align: center;
+    pointer-events: none; /* Disable clicks on header */
+}
+
+/* Pulsating Animation Applied to #day-count */
+#day-count {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    margin: 0;
+    display: inline-block; /* Only the text is clickable */
+    cursor: pointer;
+    pointer-events: auto; /* Make #day-count clickable even though header is not */
+}
+
+#day-count.pulsating {
+    animation: slowPulse 2s infinite ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    #day-count {
+        font-size: 40px;
+    }
+}
+
+/* Main Content */
+#main-content {
+    margin-top: 80px;
+    margin-bottom: 200px;
+    transition: margin-left 0.3s ease;
+}
+
+#side-menu.visible ~ #main-content {
+    margin-left: 240px;
+}
+
+/* Poems Container */
+#poems-container {
+    padding: 10px;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Poem Wrapper */
+.poem-wrapper {
+    border-bottom: 1px solid var(--line-color);
+    padding: 10px 0;
+}
+
+/* Custom Background for Poem Wrapper */
+.poem-wrapper.custom-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Poem Header */
+.poem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.poem-header h2 {
+    margin: 0;
+    flex: 1 1 auto;
+    margin-right: 10px;
+}
+
+.poem-header span {
+    font-size: 0.9em;
+    flex-shrink: 0;
+    white-space: nowrap;
+    text-align: right;
+}
+
+/* Adjust Poem Header on Mobile */
+@media screen and (max-width: 768px) {
+    .poem-header h2 {
+        font-size: 1.2em;
+        line-height: 1.2;
+        text-align: left;
+        margin-right: 10px;
+    }
+
+    .poem-header span {
+        font-size: 0.9em;
+        max-width: 40%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* Poem Content */
+.poem-content {
+    padding: 10px 0;
+}
+
+.poem-text {
+    margin-top: 10px;
+}
+
+.poem-text.clickable {
+    cursor: pointer;
+}
+
+/* Media Controls */
+.media-controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.media-controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.media-controls img {
+    width: 30px;
+    height: 30px;
+}
+
+.media-controls input[type="range"] {
+    margin-left: 10px;
+    width: 80px;
+    -webkit-appearance: none;
+    background: transparent;
+    height: 2px;
+    cursor: pointer;
+}
+
+/* Custom Slider Styles for Webkit Browsers */
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    background: var(--link-color);
+    border: none;
+    border-radius: 1px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--text-color);
+    border-radius: 50%;
+    margin-top: -5px;
+    cursor: pointer;
+}
+
+[data-theme="dark"] input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--text-color);
+}
+
+[data-theme="dark"] input[type="range"]::-webkit-slider-thumb {
+    background: var(--text-color);
+}
+
+/* Custom Slider Styles for Firefox */
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    background: var(--link-color);
+    border: none;
+    border-radius: 1px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+[data-theme="dark"] input[type="range"]::-moz-range-track {
+    background: var(--text-color);
+}
+
+[data-theme="dark"] input[type="range"]::-moz-range-thumb {
+    background: var(--text-color);
+}
+
+/* Custom Slider Styles for IE */
+input[type="range"]::-ms-track {
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type="range"]::-ms-fill-lower {
+    background: var(--link-color);
+    border: none;
+    border-radius: 1px;
+}
+
+input[type="range"]::-ms-fill-upper {
+    background: var(--link-color);
+    border: none;
+    border-radius: 1px;
+}
+
+input[type="range"]::-ms-thumb {
+    width: 12px;
+    height: 12px;
+    background: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+[data-theme="dark"] input[type="range"]::-ms-fill-lower {
+    background: var(--text-color);
+}
+
+[data-theme="dark"] input[type="range"]::-ms-fill-upper {
+    background: var(--text-color);
+}
+
+[data-theme="dark"] input[type="range"]::-ms-thumb {
+    background: var(--text-color);
+}
+
+/* Hide the default focus outline and add a custom one if needed */
+input[type="range"]:focus {
+    outline: none;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+
+/* Floating Footer */
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    border-top: 1px solid var(--line-color);
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1001;
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.footer-buttons button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.footer-buttons button img {
+    width: 25px;
+    height: 25px;
+}
+
+.theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.theme-toggle button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.theme-toggle img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8em;
+    color: var(--text-color);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Language Toggle Positioned at Lower Right */
+.language-toggle {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1001;
+}
+
+.language-toggle button {
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Cloud Icon Positioned at Lower Left */
+.cloud-icon {
+    position: fixed;
+    bottom: 0px;
+    left: 5px;
+    z-index: 1001;
+}
+
+.cloud-icon button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cloud-icon img {
+    width: 53px;
+    height: 40px;
+}
+
+/* Blinking Animation for Cloud Icon */
+.cloud-icon.blinking img {
+    animation: blinking 1s infinite;
+}
+
+@keyframes blinking {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Refresh Popup Styles */
+.refresh-popup {
+    position: fixed;
+    top: -100px;
+    left: 0;
+    right: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 15px;
+    text-align: center;
+    z-index: 1002;
+    transition: top 0.5s ease;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.refresh-popup.visible {
+    top: 0;
+}
+
+.refresh-popup p {
+    margin: 0;
+    font-size: 1em;
+}
+
+/* Buttons Container */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.refresh-popup button {
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* --- Responsive Adjustments for Mobile Devices --- */
+@media screen and (max-width: 768px) {
+    /* Adjust Footer Layout on Mobile */
+    #footer {
+        padding: 5px 0;
+    }
+
+    .footer-buttons {
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+    }
+
+    .footer-buttons button {
+        margin: 3px 5px;
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    .theme-toggle img {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Reduce Footer Text Size on Mobile */
+    .footer-bottom {
+        font-size: 0.7em;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+    .language-toggle {
+        bottom: 15px;
+        right: 10px;
+    }
+
+    .cloud-icon {
+        bottom: 0px;
+        left: 5px;
+    }
+
+    .footer-bottom {
+        max-width: 70%;
+    }
+
+    .day-count-image {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Highlighted Poem */
+.poem-wrapper.highlight {
+    border: 2px solid var(--highlight-color);
+    box-shadow: 0 0 10px var(--highlight-color);
+}
+
+/* Centering the Matrix Poem */
+.matrix-poem-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.matrix-poem-wrapper .poem-text {
+    text-align: center;
+}
+
+.matrix-poem-wrapper table {
+    margin: 0 auto;
+}
+
+.matrix-poem-wrapper td {
+    font-size: 1em;
+    padding: 2px 2px;
+}
+
+/* Reading Mode Overlay */
+.reading-mode-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-color);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reading-mode-content-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    /* The entire content is clickable */
+}
+
+.reading-mode-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reading-mode-header h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.reading-mode-content {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Contact Form Styling */
+#contact-form-container {
+    padding: 1em;
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact-form-container h1 {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#contact-form label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    box-sizing: border-box;
+    border: 1px solid var(--line-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+#contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+#contact-form button {
+    padding: 0.8em 1.5em;
+    background-color: var(--toggle-bg-checked);
+    color: var(--text-color);
+    border: 1px solid var(--line-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#contact-form button:hover {
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+}
+
+/* Laughing Man Overlay Styles */
+
+/* Overlay Container */
+#laughingman-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Visible State */
+#laughingman-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Overlay Image */
+#laughingman-overlay-img {
+    width: 256px;
+    height: 256px;
+    object-fit: contain;
+    cursor: default;
+}
+
+@media screen and (max-width: 768px) {
+    #laughingman-overlay-img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #laughingman-overlay-img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Slow, subtle pulse animation */
+@keyframes slowPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.pulsating {
+    animation: slowPulse 2s ease-in-out;
+}
+
+/* Highlighted poem */
+.poem-wrapper.highlight {
+    border: 2px solid var(--highlight-color);
+    box-shadow: 0 0 10px var(--highlight-color);
+}
+
+.matrix-poem-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.matrix-poem-wrapper .poem-text {
+    text-align: center;
+}
+
+.matrix-poem-wrapper table {
+    margin: 0 auto;
+}
+
+.matrix-poem-wrapper td {
+    font-size: 1em;
+    padding: 2px 2px;
+}
+
+/* Base styles for the puzzle game */
+.puzzle-game {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background-color: var(--line-color);
+    padding: 2px;
+    border-radius: 4px;
+    margin: 20px auto; /* Center the puzzle horizontally */
+    width: 90vw; /* 90% of the viewport width */
+    max-width: 300px; /* Maximum width to prevent it from being too large on desktops */
+    aspect-ratio: 1; /* Maintain a square shape */
+}
+
+/* Adjust puzzle size for larger screens */
+@media (min-width: 768px) {
+    .puzzle-game {
+        width: 300px; /* Fixed width on tablets and desktops */
+    }
+}
+
+/* Styles for individual puzzle tiles */
+.puzzle-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5vw; /* Responsive font size based on viewport width */
+    max-font-size: 24px; /* Prevent font from becoming too large on very wide screens */
+    color: var(--text-color);
+    cursor: pointer;
+    user-select: none;
+    aspect-ratio: 1;
+    background-color: var(--background-color); /* Default background */
+    border-radius: 2px; /* Optional: Slight rounding of tile corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for interactions */
+}
+
+/* Hover effect for better user experience */
+.puzzle-tile:hover {
+    background-color: var(--hover-color); /* Use defined --hover-color */
+    transform: scale(1.05);
+}
+
+/* Styles specific to the empty tile */
+.puzzle-tile.empty {
+    background-color: var(--highlight-color);
+    cursor: default; /* Indicate that it's not clickable */
+}
+
+/* Optional: Add a subtle shadow to tiles for depth */
+.puzzle-tile:not(.empty) {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure images within tiles scale appropriately */
+.puzzle-game .puzzle-tile img {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 480px) {
+    .puzzle-game {
+        width: 90vw;
+        max-width: 250px;
+    }
+
+    .puzzle-tile {
+        font-size: 3.5vw;
+        max-font-size: 20px;
+    }
+}
+
+/* Responsive adjustments for very large screens */
+@media (min-width: 1200px) {
+    .puzzle-game {
+        max-width: 400px;
+    }
+
+    .puzzle-tile {
+        font-size: 1.5vw;
+        max-font-size: 24px;
+    }
+}

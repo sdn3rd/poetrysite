@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectral Tapestry</title>
+    <meta name="description"  content="A performance poetry site exploring the quiet ache of ghosting and the journey of letting go.">
+    <meta name="keywords" content="spectral tapestry, tristan nuvola, poetry, ghosting, relationships, emotions, unspoken words, lost connections, spectral tapestry, performance art">
+    <meta name="author" content="Tristan Nuvola">
+    <link rel="canonical" href="https://spectraltapestry.com/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Spectral Tapestry - Performance Poetry of Ghosted Connections">
+    <meta property="og:description" content="A performance poetry site exploring the quiet ache of ghosting and the journey of letting go.">
+    <meta property="og:image" content="https://spectraltapestry.com/images/sitepreview.jpg">
+    <meta property="og:url" content="https://spectraltapestry.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Spectral Tapestry">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@tristannuvola">
+    <meta name="twitter:creator" content="@tristannuvola">
+    <meta name="twitter:title" content="Spectral Tapestry - Performance Poetry of Ghosted Connections">
+    <meta name="twitter:description" content="A performance poetry site exploring the quiet ache of ghosting and the journey of letting go.">
+    <meta name="twitter:image" content="https://spectraltapestry.com/images/sitepreview.jpg">
+    <meta name="googlebot" content="noarchive">
+    <meta name="bingbot" content="noarchive">
+    <meta name="yandex" content="noarchive">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="alternate" type="application/json+oembed" href="https://spectraltapestry.com/oembed?format=json" title="Spectral Tapestry oEmbed">
+    <link rel="alternate" type="application/xml+oembed" href="https://spectraltapestry.com/oembed?format=xml" title="Spectral Tapestry oEmbed">
+    <link rel="stylesheet" href="style.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Spectral Tapestry">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div id="menu-icon-container">
+        <div id="hamburger-menu">
+            <img src="icons/menu.png" alt="Menu">
+        </div>
+    </div>
+
+    <div id="patreon-icon-container">
+        <a href="https://www.patreon.com/tristannuvola" target="_blank" rel="noopener noreferrer">
+            <img id="patreon-icon" src="icons/patreon.png" alt="Patreon">
+        </a>
+    </div>
+
+    <div id="side-menu">
+        <ul>
+            <li>
+                <a id="home-link" href="#">
+                    <img src="icons/home_alt.png" alt="Home Icon" />
+                    <span class="menu-item-text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a id="caliope-link" href="#">
+                    <img src="icons/caliope_alt.png" alt="Calliope Icon" />
+                    <span class="menu-item-text">Calliope</span>
+                </a>
+            </li>
+            <li>
+                <a id="lupa-link" href="#">
+                    <img src="icons/lupa_alt.png" alt="La Lupa Icon" />
+                    <span class="menu-item-text">La Lupa</span>
+                </a>
+            </li>
+            <li>
+                <a id="experiments-link" href="#">
+                    <img src="icons/experiments_alt.png" alt="Experiments Icon" />
+                    <span class="menu-item-text">Experiments</span>
+                </a>
+            </li>
+            <li>
+                <a id="strands-link" href="#">
+                    <img src="icons/strands_alt.png" alt="Strands Icon" />
+                    <span class="menu-item-text">Strands</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div id="tristan-button-container">
+            <a id="tristan-logo-link" href="https://tristannuvola.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Tristan Nuvola's Website">
+                <img src="images/tristanlogo.png" alt="Tristan Logo" />
+            </a>
+        </div>
+    </div>
+
+    <div id="header">
+        <div id="day-count"></div>
+    </div>
+
+    <div id="main-content">
+        <div id="poems-container"></div>
+    </div>
+
+    <div id="footer">
+        <div class="footer-buttons">
+            <button id="expand-all">Expand All</button>
+            <button id="sort-toggle">↓</button>
+            <button id="collapse-all">Collapse All</button>
+        </div>
+        <div class="theme-toggle">
+            <button id="dark-mode-toggle"><img src="icons/darkmode.png" alt="Dark Mode"></button>
+        </div>
+        <div class="footer-bottom">
+            <p id="footer-text">© 2024 All Rights Reserved Spectral Tapestry</p>
+        </div>
+    </div>
+
+    <div class="cloud-icon">
+        <button id="cloud-refresh">
+            <img src="icons/cloud.png" alt="Refresh Cache">
+        </button>
+    </div>
+
+    <div class="language-toggle">
+        <button id="lang-toggle">Ita</button>
+    </div>
+
+    <!-- Fullscreen Overlay for Double Tap -->
+    <div id="laughingman-overlay">
+        <img id="laughingman-overlay-img" src="icons/laughingman.png" alt="Laughing Man Fullscreen">
+    </div>
+    <script src="js/cache.js"></script>
+    <script src="js/poems.js"></script>
+    <script src="js/puzzle.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Spectral Tapestry",
+  "short_name": "Tapestry",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "description": "A performance poetry site exploring the quiet ache of ghosting and the journey of letting go.",
+  "icons": [
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "orientation": "portrait-primary"
+}
